@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supreme Court Kiosk</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Supreme Court of India – Kiosk System</h1>
+        <h2>Smart Case Information Portal</h2>
+    </header>
+
+    <div class="menu">
+        <button class="btn" onclick="loadCauseList()">📋 Cause List</button>
+        <button class="btn" onclick="loadCaseStatus()">🔎 Case Status</button>
+        <button class="btn" onclick="loadDailyOrders()">📝 Daily Orders</button>
+        <button class="btn" onclick="loadJudgments()">⚖ Judgments</button>
+    </div>
+
+    <div id="searchBox" class="hidden">
+        <input type="text" id="caseInput" placeholder="Enter Case Number (e.g. CIVIL/1234/2024)">
+        <button onclick="searchCase()">Search</button>
+    </div>
+
+    <div id="result" class="result-box"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

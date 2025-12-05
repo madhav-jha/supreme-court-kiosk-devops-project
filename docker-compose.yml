@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./kiosk-backend
+    container_name: kiosk-backend
+    ports:
+      - "9090:9090"
+
+  frontend:
+    build: ./kiosk-frontend
+    container_name: kiosk-frontend
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
