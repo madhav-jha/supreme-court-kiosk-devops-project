@@ -1,0 +1,28 @@
+---
+- hosts: app_docker
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install dependencies for docker-compose
+      apt:
+        name: python3-pip
+        state: present
+
+    - name: Install docker-compose using pip
+      pip:
+        name: docker-compose
+
+    - name: Create application directory
+      file:
+        path: /opt/kiosk
+        state: directory
+        mode: '0755'
