@@ -1,0 +1,103 @@
+/* overall layout */
+* { box-sizing: border-box; }
+body { margin:0; font-family: "Segoe UI", Roboto, Arial, sans-serif; background:#0f1724; color:#0b1726; }
+.app { min-height:100vh; display:flex; flex-direction:column; }
+
+/* topbar */
+.topbar {
+  background: linear-gradient(90deg, #e8f4ff, #dff0ff);
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  border-bottom: 2px solid rgba(0,0,0,0.06);
+}
+.top-left { display:flex; gap:12px; align-items:center; }
+.logo-circle { width:56px; height:56px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow: 0 1px 6px rgba(0,0,0,0.08); }
+.top-left h1 { margin:0; font-size:18px; color:#043047; letter-spacing:0.6px; }
+.top-left p { margin:2px 0 0; font-size:12px; color:#055; }
+
+/* main area: left menu, center, right menu */
+.main-area { display:flex; gap:16px; padding:18px; align-items:flex-start; }
+
+/* left menu 4 buttons vertical */
+.left-menu {
+  width:220px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.left-menu button {
+  background:#0c7db1; color:white; border:none; padding:12px 14px; border-radius:8px; font-weight:600; cursor:pointer;
+  text-align:left;
+  box-shadow: 0 2px 6px rgba(3,66,90,0.12);
+}
+.left-menu button:hover { transform: translateY(-1px); }
+
+/* right menu 3 buttons vertical */
+.right-menu {
+  width:220px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:flex-end;
+}
+.right-menu button {
+  background:#0c7db1; color:white; border:none; padding:12px 14px; border-radius:8px; font-weight:600; cursor:pointer;
+  box-shadow: 0 2px 6px rgba(3,66,90,0.12);
+}
+.right-menu button:hover { transform: translateY(-1px); }
+
+/* center area */
+.center-area { flex:1; display:flex; flex-direction:column; gap:14px; }
+
+/* hero area simulating the Supreme Court image / display board */
+.hero {
+  position:relative;
+  height:280px;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow: 0 6px 18px rgba(2,20,30,0.15);
+}
+.hero-image {
+  position:absolute; inset:0;
+  background-image: url('https://images.unsplash.com/photo-1591961251238-3a3f1b6f1c2e?auto=format&fit=crop&w=1600&q=60');
+  background-size:cover;
+  background-position:center;
+  filter: saturate(0.9) contrast(0.95);
+  transform: scale(1.02);
+}
+.hero-overlay {
+  position:relative;
+  z-index:2;
+  padding:18px;
+  height:100%;
+  display:flex;
+  align-items:flex-end;
+}
+
+/* display board inside hero */
+.display-board {
+  background: rgba(255,255,255,0.95);
+  padding:12px;
+  border-radius:8px;
+  width:100%;
+  max-width:920px;
+}
+.display-board h2 { margin:0 0 8px 0; color:#043047; }
+.display-board ul { list-style:none; padding:0; margin:0; max-height:160px; overflow:auto; }
+.display-board li { padding:8px 6px; border-bottom:1px solid #eef6fb; }
+.ann-meta { font-size:11px; color:#666; margin-top:4px; }
+
+/* bottom cards */
+.bottom-cards { display:flex; gap:12px; }
+.card { background:white; padding:14px; border-radius:8px; box-shadow: 0 3px 10px rgba(2,20,30,0.06); flex:1; }
+.card h3 { margin-top:0; }
+.card form { display:flex; gap:8px; align-items:center; }
+.card input[type="text"], .card input[type="file"] { padding:8px; width:100%; }
+button { cursor:pointer; }
+button[type="submit"] { background:#0c7db1; color:white; border:none; padding:8px 12px; border-radius:6px; }
+
+/* small helpers */
+.error { color:#b00020; margin-top:8px; }
+.info { color:#045; margin-top:8px; }
+.case-result { margin-top:8px; border-top:1px dashed #e6eef6; padding-top:8px; }
