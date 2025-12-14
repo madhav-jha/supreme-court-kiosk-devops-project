@@ -1,10 +1,15 @@
-version: '3.8'
+
 services:
-  frontend:
-    build: ./app/frontend
-    ports:
-      - "3000:3000"
   backend:
-    build: ./app/backend  # Backend folder banao
+    build: ./backend
+    container_name: kiosk-backend
     ports:
       - "4000:4000"
+
+  frontend:
+    build: ./frontend
+    container_name: kiosk-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
