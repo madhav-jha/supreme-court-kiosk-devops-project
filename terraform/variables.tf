@@ -15,7 +15,7 @@ variable "availability_zone" {
 }
 
 variable "key_name" {
-  default = "kiosk-key"
+  default = "kiosk-key-final"
 }
 
 variable "instance_type_small" {
@@ -27,5 +27,5 @@ variable "instance_type_medium" {
 }
 
 variable "ami_id" {
-  default = "ami-0f5ee92e2d63afc18"
+  default = "ami-087d1c9a513324697"
 }
