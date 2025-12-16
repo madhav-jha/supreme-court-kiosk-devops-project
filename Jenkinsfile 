@@ -14,7 +14,6 @@ pipeline {
 
         stage('SCM Checkout') {
             steps {
-                echo "Cloning source code from GitHub"
                 git branch: 'main',
                     url: 'https://github.com/madhav-jha/supreme-court-kiosk-devops-project.git'
             }
@@ -28,13 +27,10 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
-                echo "Building backend and frontend Docker images"
-
-                dir('kiosk-backend') {
+                dir('app/kiosk-backend') {
                     sh "docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE:$TAG ."
                 }
-
-                dir('kiosk-frontend') {
+                dir('app/kiosk-frontend') {
                     sh "docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE:$TAG ."
                 }
             }
@@ -56,38 +52,28 @@ pipeline {
 
         stage('Push to DockerHub') {
             steps {
-                echo "Pushing Docker images to DockerHub"
                 sh '''
                   docker push $DOCKERHUB_USER/$BACKEND_IMAGE:$TAG
                   docker push $DOCKERHUB_USER/$FRONTEND_IMAGE:$TAG
                 '''
             }
         }
+    }
 
-        stage('Deploy to Kubernetes') {
-            when {
-                expression { false }
-            }
-            steps {
-                echo "Kubernetes deployment will be enabled in next phase"
-            }
+    post {
+        success {
+            emailext(
+                subject: "Jenkins Build SUCCESS",
+                body: "Build successful. Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER}",
+                to: "jhamadhav2025@gmail.com"
+            )
         }
-    }
-
-   post {
-    success {
-        emailext(
-            subject: "Jenkins Build SUCCESS",
-            body: "Build successful. Job: ${env.JOB_NAME} Build: ${env.BUILD_NUMBER}",
-            to: "jhamadhav2025@gmail.com"
-        )
-    }
-
-    failure {
-        emailext(
-            subject: "Jenkins Build FAILED",
-            body: "Build failed. Check Jenkins logs.",
-            to: "jhamadhav2025@gmail.com"
-        )
+        failure {
+            emailext(
+                subject: "Jenkins Build FAILED",
+                body: "Build failed. Check Jenkins logs.",
+                to: "jhamadhav2025@gmail.com"
+            )
+        }
     }
 }
