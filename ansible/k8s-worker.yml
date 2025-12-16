@@ -1,0 +1,66 @@
+- name: Setup Kubernetes Worker
+  hosts: k8s_worker
+  become: yes
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - curl
+          - ca-certificates
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Disable swap
+      shell: |
+        swapoff -a
+        sed -i '/ swap / s/^/#/' /etc/fstab
+
+    - name: Load kernel modules
+      shell: |
+        modprobe overlay
+        modprobe br_netfilter
+
+    - name: Set sysctl params
+      shell: |
+        cat <<EOF | tee /etc/sysctl.d/k8s.conf
+        net.bridge.bridge-nf-call-iptables  = 1
+        net.bridge.bridge-nf-call-ip6tables = 1
+        net.ipv4.ip_forward                 = 1
+        EOF
+        sysctl --system
+
+    - name: Install containerd
+      apt:
+        name: containerd
+        state: present
+
+    - name: Enable containerd
+      service:
+        name: containerd
+        state: started
+        enabled: yes
+
+    - name: Add Kubernetes GPG key
+      apt_key:
+        url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+        keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+        state: present
+
+    - name: Add Kubernetes repository
+      apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /"
+        filename: kubernetes
+        state: present
+
+    - name: Install Kubernetes components
+      apt:
+        name:
+          - kubelet
+          - kubeadm
+        state: present
+        update_cache: yes
+
+    - name: Hold Kubernetes packages
+      shell: apt-mark hold kubelet kubeadm
