@@ -27,10 +27,10 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
-                dir('app/kiosk-backend') {
+                dir('app/backend') {
                     sh "docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE:$TAG ."
                 }
-                dir('app/kiosk-frontend') {
+                dir('app/frontend') {
                     sh "docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE:$TAG ."
                 }
             }
