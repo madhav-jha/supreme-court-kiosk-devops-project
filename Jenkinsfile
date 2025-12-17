@@ -4,7 +4,7 @@ pipeline {
     }
 
     environment {
-        DOCKERHUB_USER = "jhmadhav2025"
+        DOCKERHUB_USER = "jhamadhav2025"
         BACKEND_IMAGE  = "kiosk-backend"
         FRONTEND_IMAGE = "kiosk-frontend"
         TAG            = "latest"
