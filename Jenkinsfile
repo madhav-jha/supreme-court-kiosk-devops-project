@@ -62,9 +62,8 @@ pipeline {
                 '''
             }
         }
-    }
 
-       stage('Deploy to Kubernetes') {
+        stage('Deploy to Kubernetes') {
             steps {
                 echo "Deploying application to Kubernetes using Helm"
                 sh '''
@@ -73,7 +72,6 @@ pipeline {
             }
         }
     }
-
 
     post {
         success {
