@@ -27,11 +27,15 @@ pipeline {
 
         stage('Docker Image Build') {
             steps {
+
+                // Backend image
                 dir('app/backend') {
-                    sh "docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE:$TAG ."
+                    sh "docker build -t ${DOCKERHUB_USER}/${BACKEND_IMAGE}:${TAG} ."
                 }
+
+                // Frontend image
                 dir('app/frontend') {
-                    sh "docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE:$TAG ."
+                    sh "docker build --no-cache -t ${DOCKERHUB_USER}/${FRONTEND_IMAGE}:${TAG} ."
                 }
             }
         }
