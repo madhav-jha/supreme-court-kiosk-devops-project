@@ -1,0 +1,12 @@
+backend:
+  image: jhmadhav2025/kiosk-backend
+  tag: latest
+  port: 4000
+  replicas: 1
+
+frontend:
+  image: jhmadhav2025/kiosk-frontend
+  tag: latest
+  port: 3000
+  replicas: 1
+  nodePort: 30007
