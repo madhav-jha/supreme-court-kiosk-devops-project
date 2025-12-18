@@ -64,6 +64,17 @@ pipeline {
         }
     }
 
+       stage('Deploy to Kubernetes') {
+            steps {
+                echo "Deploying application to Kubernetes using Helm"
+                sh '''
+                  helm upgrade --install kiosk ./k8s/helm/kiosk-helm
+                '''
+            }
+        }
+    }
+
+
     post {
         success {
             emailext(
