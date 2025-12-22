@@ -1,4 +1,4 @@
-     ::: Project: “Supreme Court Kiosk – End-to-End DevOps CI/CD with AWS, Docker, Jenkins & Kubernetes (Helm)” :::
+::: Project: “Supreme Court Kiosk – End-to-End DevOps CI/CD with AWS, Docker, Jenkins & Kubernetes (Helm)” :::
 
   ===> Project Overview :-
   
@@ -16,11 +16,11 @@
                  .Kubernetes deployment using Helm
                  .Centralized monitoring with Prometheus & Grafana
                  
-                                                     ==> FRONTEND <==
+                                                 ==> FRONTEND <==
 														 
   <img width="1783" height="1056" alt="Screenshot 2025-12-12 at 12 18 19 PM" src="https://github.com/user-attachments/assets/8a233eae-c8be-49f6-8b5b-57e85f859a68" />
   
-                                                     ==> BACKEND <==
+                                                  ==> BACKEND <==
 														 
  <img width="1790" height="320" alt="backend" src="https://github.com/user-attachments/assets/627966ff-f7af-4625-9658-a8423b582fd3" />
 
